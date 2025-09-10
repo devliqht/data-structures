@@ -2,6 +2,7 @@
 // #include "headers/StacksArr.h"
 
 int main(void) {
+
 	Stack S;
 	init(&S);
 	push(&S, 'u');

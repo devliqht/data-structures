@@ -35,6 +35,8 @@ int main(void) {
 	printList(L);
 	insertAt(&L, 'w', 0);
 	printList(L);
+	deleteFirst(&L);
+	printList(L);
 	
 	
 	return 0;
@@ -78,4 +80,10 @@ void insertAt(LIST* L, char elem, int pos) {
 		temp->link = (*trav);
 		(*trav) = temp;
 	}
+}
+
+void deleteFirst(LIST* L) {
+	LIST temp = (*L);
+	(*L) = temp->link;
+	free(temp);
 }
