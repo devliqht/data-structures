@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#define MAX 10
 
 typedef struct node {
 	char elem;
@@ -69,6 +70,17 @@ void printStack(Stack* S) {
 			pop(&temp);
 		}
 	}
+}
+
+void insertBottom(Stack* S, char elem) {
+	Stack temp;
+	init(&temp);
+	push(&temp, elem);
+	while (!isEmpty(*S)) {
+		push(&temp, S->top->elem);
+		pop(S);
+	}
+	(*S) = temp;
 }
 
 #endif

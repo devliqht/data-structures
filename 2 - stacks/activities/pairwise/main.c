@@ -16,5 +16,7 @@ int main(void) {
 	printStack(&S);
 	printf("TOP ELEMENT: %c\n", top(&S));
 	
+	insertBottom(&S, 'm');
+	printStack(&S);
 	return 0;
 }

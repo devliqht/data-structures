@@ -6,7 +6,7 @@
 #define MAX 10
 
 typedef struct {
-	char Elem[MAX];
+	int Elem[MAX];
 	int top;
 } Stack;
 
@@ -27,11 +27,11 @@ void push(Stack* S, char elem) {
 }
 
 char pop(Stack* S) {
-	return (!isEmpty(*S)) ? S->Elem[S->top--] : '\0';
+	return (!isEmpty(*S)) ? S->Elem[S->top--] : -1;
 }
-
+  
 char top(Stack* S) {
-	return (!isEmpty(*S)) ? S->Elem[S->top] : '\0';
+	return (!isEmpty(*S)) ? S->Elem[S->top] : -1;
 }
 
 void printStack(Stack* S) {
@@ -39,7 +39,7 @@ void printStack(Stack* S) {
 	Stack temp;
 	init(&temp);
 	while (!isEmpty(*S)) {
-		printf("%c\n", top(S));
+		printf("%d\n", top(S));
 		push(&temp, top(S));
 		pop(S);
 	}

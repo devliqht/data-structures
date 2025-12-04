@@ -87,3 +87,11 @@ void deleteFirst(LIST* L) {
 	(*L) = temp->link;
 	free(temp);
 }
+
+void deleteLast(LIST* L) {
+	LIST* trav;
+	for (trav = L; (*trav)->link != NULL; trav = &(*trav)->link){}
+	LIST temp = (*trav);
+	(*trav) = NULL;
+	free(temp);
+}
