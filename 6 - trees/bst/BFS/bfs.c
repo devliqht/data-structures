@@ -1,12 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "queue.h"
 
-typedef struct node {
-	int elem;
-	struct node* left;
-	struct node* right;
-} *BST;
-
+void BFStrav(BST t);
 void initBST(BST* t);
 void insertBST(BST* t, int x);
 void displayPreorder(BST t);
@@ -25,9 +21,13 @@ int main(void) {
 	insertBST(&tree, 5);
 	insertBST(&tree, 15);
 	insertBST(&tree, 10);
+	printf("Preorder: \n");
 	displayPreorder(tree);
-	printf("\n");
+	printf("\nInorder:\n");
 	displayInorder(tree);
+	printf("\nBFS:\n");
+	BFStrav(tree);
+	 
 	
 	return 0;
 }
@@ -56,8 +56,7 @@ void insertBST(BST* t, int x) {
 	BST* trav = t;
 	while ((*trav) != NULL && (*trav)->elem != x) {
 		((*trav)->elem < x) ? (trav = &(*trav)->right) : (trav = &(*trav)->left);
-	} // This is pointer to pointer to node approach. We start at the root, check if x is bigger than the element (first is the root)
-	// If it is, then we go to the right. If not, we go to the left.
+	} 
 	if ((*trav) == NULL) { // insertion
 		BST temp = (BST)malloc(sizeof(struct node));
 		temp->elem = x;
@@ -67,3 +66,31 @@ void insertBST(BST* t, int x) {
 	}
 }
 
+void BFStrav(BST t) {
+	C_Queue q;
+	init(&q);
+	
+	enqueue(&q, t);
+	int x = 0;
+	while (!isEmpty(q)) {
+		printf("Level %d: ", x++);
+		
+		int stopper = (q.rear + 1) % MAX;
+		
+		while (q.front != stopper) {
+			BST front = dequeue(&q);
+			printf("%d, ", front->elem);
+			if (front->left != NULL) enqueue(&q, front->left);
+			if (front->right != NULL) enqueue(&q, front->right);
+		}
+		printf("\n");
+	}
+}
+
+BST getMin(BST t) {
+    BST current = t;
+    while (current && current->left != NULL) {
+        current = current->left;
+    }
+    return current;
+}

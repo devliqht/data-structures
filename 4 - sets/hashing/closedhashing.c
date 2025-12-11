@@ -73,6 +73,7 @@ void insertElement(Dictionary D, char elem) {
 int findElem(Dictionary D, char elem) {
 	int count = 0, idx;
 	for (idx = hash(elem); D[idx] != EMPTY && D[idx] != elem && count < MAX; idx = (idx+1) % MAX, count++) {};
+
 	return (count < MAX && hash(elem) != INVALID) ? idx : INVALID;
 };
 
@@ -89,7 +90,6 @@ void deleteElem(Dictionary D, char elem) {
 }
 
 int main(void) {
-	
 	Dictionary D;
 	initDict(D);
 	insertElement(D, 'A');

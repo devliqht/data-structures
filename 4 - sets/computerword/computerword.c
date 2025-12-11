@@ -28,6 +28,14 @@ void insert(SET* Set, int pos) {
 	}
 }
 
+void delete(SET* Set, int pos) {
+	if (pos < MAX && pos >= 0) {
+		unsigned char bitmask = 1 << pos;
+		Set->S = Set->S && ~bitmask;
+		Set->count--;
+	}
+}
+
 SET* UNION(SET* A, SET* B) {
 	SET* C = (SET*)malloc(sizeof(SET));
 	if (C != NULL) {
