@@ -53,7 +53,7 @@ void insertMinHeap(MinHeap* heap, Node i) {
 	// Insert min heap function:
 	// Insert the element at the end of the heap, then bubble up.
 	int curr = 0;
-	if (heap->size < MAX) { // If it is a valid element, then
+	if (heap->size < MAX) { // If it is a valid element, then	
 		curr = heap->size; // Set curr to the last index.
 		heap->array[heap->size++] = i; // Insert the element into the last index.
 	}
